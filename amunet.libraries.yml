@@ -1,0 +1,14 @@
+global-components:
+  version: VERSION
+  css:
+    base:
+      'https://fonts.googleapis.com/css?family=Source Sans Pro:200,300,400':  { type: external, minified: true }
+    theme:
+      css/styles.css: {}
+  js:
+    js/script.js: {}
+default-color:
+  version: VERSION
+  css:
+    theme:
+      css/color/w3-theme-00008.css: {}
