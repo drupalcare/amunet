@@ -1,0 +1,10 @@
+amunet-subtheme-global:
+  version: VERSION
+  css:
+    theme:
+      css/amunet-subtheme-style.css: {}
+
+  js:
+    js/amunet-subtheme-script.js: {}
+  dependencies:
+  - amunet/amunet-theme-global
