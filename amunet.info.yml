@@ -6,7 +6,7 @@ description: 'Egyptian Gods - Amunet - One of the creation Goddesses. <a target=
 core: '8.x'
 
 libraries:
-  - amunet/global-components
+  - amunet/amunet-theme-global
   - amunet/default-color
 
 #Regions

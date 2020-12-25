@@ -18,7 +18,7 @@ else {
        }
      }
 
-  Drupal.behaviors.customBehavior = {
+  Drupal.behaviors.amunetThemeBehavior = {
     attach: function (context, settings) {
 
       $(context)

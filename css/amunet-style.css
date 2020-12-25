@@ -79,23 +79,7 @@ a,
   transition: 0.4s !important;
 }
 
-/* Top Sticky Menu */
-#main-navigation-inner-h #block-amun-account-menu {
-  float: right !important;
-}
-
-#main-navigation-inner-h #block-amun-main-menu {
-  float: left !important;
-}
-
-#main-navigation-inner-h .ul-parent-account li {
-  float: left;
-}
-
-#main-navigation-inner-h {
-  padding-right: 50px;
-  position: relative;
-}
+/* Left hidden menu */
 
 .w3-animate-opacity {
   animation: opac 0.8s;
@@ -202,7 +186,7 @@ a,
 }
 
 /* Header */
-#block-amunet-branding {
+.block-system-branding-block {
   margin: 0 auto;
   float: none;
   text-align: center;
