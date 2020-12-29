@@ -1,22 +1,18 @@
 {
-  "name": "drupal/amunet",
-  "description": "Amunet is a Sub-Theme for W3CSS THEME. It is a sub-theme with an invisible vertical menu. Menu button on the left and search icon on right.",
-  "type": "drupal-theme",
-  "homepage": "https://drupal.org/project/amunet",
-  "authors": [
-    {
-      "name": "Alaa Haddad (alaahaddad.com)",
-      "homepage": "https://www.drupal.org/u/flashwebcenter",
-      "role": "Maintainer"
+    "name": "drupal/amunet",
+    "description": "Amunet is a Sub-Theme for W3CSS THEME. It is a sub-theme with an invisible vertical menu. Menu button on the left and search icon on right.",
+    "type": "drupal-theme",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Alaa Haddad (alaahaddad.com)",
+            "homepage": "https://www.drupal.org/u/flashwebcenter",
+            "role": "Maintainer"
+        }
+    ],
+    "homepage": "https://drupal.org/project/amunet",
+    "support": {
+        "issues": "https://drupal.org/project/issues/amunet",
+        "source": "https://cgit.drupalcode.org/amunet"
     }
-  ],
-  "support": {
-    "issues": "https://drupal.org/project/issues/amunet",
-    "source": "https://cgit.drupalcode.org/amunet"
-  },
-  "license": "GPL-2.0+",
-  "minimum-stability": "dev",
-    "require": {
-    "drupal/d8w3css": "^1.17"
-  }
 }
