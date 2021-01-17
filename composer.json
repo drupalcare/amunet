@@ -15,6 +15,12 @@
         "issues": "https://drupal.org/project/issues/amunet",
         "source": "https://git.drupalcode.org/project/amunet"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
     "require": {
         "drupal/d8w3css": ">=1.17"
     }
