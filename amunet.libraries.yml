@@ -1,8 +1,18 @@
-amunet-theme-global:
-  version: VERSION
+amunet-google-font-external:
+  Version: VERSION
   css:
     base:
       'https://fonts.googleapis.com/css?family=Source Sans Pro:200,300,400':  { type: external, minified: true }
+
+amunet-google-font-local:
+  Version: VERSION
+  css:
+    base:
+      css/font/google-font.css: {}
+
+amunet-theme-global:
+  version: VERSION
+  css:
     theme:
       css/amunet-style.css: {}
   dependencies:

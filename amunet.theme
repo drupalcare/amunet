@@ -13,7 +13,14 @@
 function amunet_page_attachments_alter(array &$attachments) {
   // If you enter color theme in theme settings.
   if (theme_get_setting('current_theme') != NULL) {
-    $index = array_search('amunet/default-color', $attachments['#attached']['library'], TRUE);
-    unset($attachments['#attached']['library'][$index]);
+    $defaultColor = array_search('amunet/default-color', $attachments['#attached']['library'], TRUE);
+    unset($attachments['#attached']['library'][$defaultColor]);
   }
+
+  if (theme_get_setting('amunet_google_font')) {
+    $external_google_font = array_search('amunet/amunet-google-font-external', $attachments['#attached']['library'], TRUE);
+    unset($attachments['#attached']['library'][$external_google_font]);
+    $attachments['#attached']['library'][] = 'amunet/amunet-google-font-local';
+  }
+
 }
