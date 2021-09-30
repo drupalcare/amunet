@@ -114,7 +114,7 @@ a,
 }
 
 #header {
-  z-index: 9998;
+  z-index: 97;
 }
 
 .w3-sticky {
@@ -182,7 +182,7 @@ a,
 
 #main-navigation-v {
   min-width: 300px;
-  z-index: 99999;
+  z-index: 99;
 }
 
 /* Header */
