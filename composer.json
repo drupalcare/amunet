@@ -1,5 +1,5 @@
 {
-    "name": "drupal/amunet",
+    "name": "drupal/amunet-amunet",
     "description": "Amunet is a Sub-Theme for W3CSS THEME. It is a sub-theme with an invisible vertical menu. Menu button on the left and search icon on right.",
     "type": "drupal-theme",
     "license": "GPL-2.0-or-later",
@@ -22,6 +22,6 @@
         }
     ],
     "require": {
-        "drupal/d8w3css": ">=1.17"
+        "drupal/d8w3css": ">=1.22"
     }
 }
