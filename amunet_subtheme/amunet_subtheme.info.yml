@@ -1,7 +1,7 @@
 name: Amunet Sub-theme
 type: theme
 base theme: amunet
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^8 || ^9 || ^10
 description: 'amunet sub-theme is an empty theme for your customization.'
 core: '8.x'
 libraries:
