@@ -48,37 +48,6 @@
 
 }
 
-html,
-body,
-button,
-input,
-select,
-optgroup,
-textarea,
-.copyright-inner,
-.ul-parent-account,
-.ul-parent-footer {
-  font-family: "Source Sans Pro", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  line-height: 1.618;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  font-weight: 400;
-}
-
-.w3-round {
-  border-radius: 0;
-}
-
-#footer-menu-inner form.w3-content {
-  max-width: 100%;
-  margin: 0 16px;
-}
-
-a,
-.w3-button {
-  transition: 0.4s !important;
-}
-
 /* Left hidden menu */
 .w3-animate-opacity {
   animation: opac 0.8s;
@@ -128,8 +97,8 @@ a,
   margin: 0;
 }
 
-#search-slide form#search-block-form .form-item input {
-  text-indent: 30px;
+#search-slide .w3-search-block-form .form-type-search:before {
+  top: 24px;
 }
 
 #search-slide .search-slide-inner {
@@ -196,10 +165,6 @@ a,
   padding-left: 0;
 }
 
-#search-slide .w3-search-block-form .form-type-search:before {
-  left: 15px;
-}
-
 @media (max-width:600px) {
   #search-slide .search-slide-inner {
     padding-top: 25px;
@@ -226,14 +191,6 @@ a,
   .w3-search-block-form .form-type-search:before {
     top: 22px;
     left: 25px;
-  }
-
-}
-
-@media screen and (min-width:993px) {
-  #main-navigation-h .ul-parent li > a a,
-  #main-navigation-h .ul-parent li > a {
-    padding: 10px 20px;
   }
 
 }

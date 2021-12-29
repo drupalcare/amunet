@@ -1,30 +1,9 @@
-amunet-google-font-external:
-  Version: VERSION
-  css:
-    base:
-      'https://fonts.googleapis.com/css?family=Source Sans Pro:200,300,400':  { type: external, minified: true }
-
-amunet-google-font-local:
-  Version: VERSION
-  css:
-    base:
-      css/font/google-font.css: {}
-
 amunet-theme-global:
   version: VERSION
   css:
     theme:
       css/amunet-style.css: {}
-  dependencies:
-  - drupal8_w3css_theme/global-components
   js:
     js/amunet-script.js: {}
-
-
-default-color:
-  version: VERSION
-  css:
-    theme:
-      css/color/w3-theme-00008.css: {}
   dependencies:
-  - drupal8_w3css_theme/global-components
+  - drupal8_w3css_theme/d8w3css-global-styling
