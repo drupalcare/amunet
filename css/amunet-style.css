@@ -91,10 +91,10 @@
 }
 
 #search-slide form#search-block-form {
-  width: 100%;
+  width: calc(100% - 16px);
   max-width: 100% !important;
   padding: 9px 0 0 0 !important;
-  margin: 0;
+  margin: 0 16px;
 }
 
 #search-slide .w3-search-block-form .form-type-search:before {
@@ -103,8 +103,7 @@
 
 #search-slide .search-slide-inner {
   position: relative;
-  padding: 23px 45px 23px 0;
-  margin: 0 16px!important;
+  padding: 23px 61px 23px 0;
 }
 
 #search-slide form#search-block-form .form-item {
@@ -132,7 +131,7 @@
   display: block;
   text-align: center;
   top: 38px;
-  right: 0;
+  right: 16px;
 }
 
 #header-inner #open-search {
