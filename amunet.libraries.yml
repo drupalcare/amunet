@@ -1,5 +1,4 @@
 amunet-theme-global:
-  version: VERSION
   css:
     theme:
       css/amunet-style.css: {}
