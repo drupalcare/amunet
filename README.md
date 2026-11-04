@@ -15,7 +15,7 @@ header and a search button at the right, with the site branding between them.
 1. Install W3CSS Theme 3.0 (for example `composer require drupal/d8w3css`).
 2. Install Amunet into `themes/contrib`, for example
    `composer require drupal/amunet`.
-3. Go to Appearance (`/admin/appearance`) and scroll to "Amunet V2".
+3. Go to Appearance (`/admin/appearance`) and scroll to "Amunet".
 4. Click "Install and set as default".
 
 With Drush: `drush theme:enable drupal8_w3css_theme amunet`, then
