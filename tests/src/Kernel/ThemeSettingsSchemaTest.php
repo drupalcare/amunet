@@ -70,8 +70,8 @@ class ThemeSettingsSchemaTest extends KernelTestBase {
     $this->container->get('theme_installer')->install(['amunet']);
     $settings = $this->config('amunet.settings');
     $this->assertFalse($settings->isNew());
-    $this->assertSame('w3-theme-00008', $settings->get('current_theme'));
-    $this->assertSame(1, $settings->get('top_region'));
+    $this->assertSame('w3-theme-00008', $settings->get('color_scheme.predefined'));
+    $this->assertTrue($settings->get('region_groups.top.marker_class'));
   }
 
 }

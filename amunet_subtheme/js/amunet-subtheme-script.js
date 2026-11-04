@@ -3,12 +3,13 @@
  * This file is to add any custom js for the amunet sub-theme.
  */
 
-(function ($) {
+(function (Drupal, once) {
 
   'use strict';
 
   Drupal.behaviors.amunetSubthemeBehavior = {
-      // Perform jQuery as normal in here.
+    // Add attach: function (context) { ... } here, using once() for anything
+    // that must run only one time per element.
   };
 
-})(jQuery);
+})(Drupal, once);

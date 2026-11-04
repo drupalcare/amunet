@@ -1,198 +1,226 @@
-@keyframes opac {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-
+/*
+ * amunet: centred branding header with the side-menu and search openers at
+ * its edges, plus colour fixes, on top of the D8W3CSS base theme and its
+ * colour scheme (w3-theme-00008 by default).
+ * The theme's own values live in the --amunet-* custom properties below.
+ */
+:root {
+  --amunet-icon-size: 50px;
+  --amunet-header-z: 97;
+  --amunet-side-nav-size: 300px;
+  --amunet-side-nav-z: 99;
+  --amunet-sticky-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
 }
 
-@keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
+/* Colour values: made for amunet's own scheme, so they apply only while that
+   scheme is active. D8W3CSS names the active scheme in a body class; with any
+   other scheme, that scheme's own colours are left untouched. */
+.w3css-scheme-w3-theme-00008 {
+  --amunet-header-text: #1c2450;
+  --amunet-footer-text: #bebebe;
+  --amunet-footer-border: #e0486f;
+  --amunet-focus-border: #6a78cb;
 
-  to {
-    top: 0;
-    opacity: 1;
-  }
-
+  /* Scheme variable (w3-theme-00008.css :root) that amunet re-points. */
+  --w-fm-inner-f-v: 1px solid var(--amunet-footer-border);
 }
 
-@keyframes animateleft {
-  from {
-    left: -300px;
-    opacity: 0;
-  }
-
-  to {
-    left: 0;
-    opacity: 1;
-  }
-
-}
-
-@keyframes animateright {
-  from {
-    right: -300px;
-    opacity: 0;
-  }
-
-  to {
-    right: 0;
-    opacity: 1;
-  }
-
-}
-
-/* Left hidden menu */
-.w3-animate-opacity {
-  animation: opac 0.8s;
-}
-
-.w3-animate-top {
-  position: relative;
-  animation: animatetop 0.6s;
-}
-
-.w3-animate-left {
-  position: relative;
-  animation: animateleft 0.7s;
-}
-
-.w3-animate-right {
-  position: relative;
-  animation: animateright 0.7s;
-}
-
-/*. Search Slide */
+/* search-slide:start
+ * Shared by amun, amunet and anhur; keep the three identical
+ * (planning/scripts/check-search-slide-drift.py in the lane root).
+ * js/amunet-script.js sets amunet-is-open and inert on the panel.
+ */
 .search-slide-wrapper {
-  width: 100%;
-  z-index: 9999;
-  height: 0;
+  --amunet-search-z: 9999;
+  --amunet-search-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
   position: fixed;
-  top: 0;
-  left: 0;
-  overflow-y: hidden;
-  transition: 0.5s;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: var(--amunet-search-z);
+  box-shadow: var(--amunet-search-shadow);
+  opacity: 0;
+  transform: translateY(-100%);
 }
 
-#header {
-  z-index: 97;
+.search-slide-wrapper.amunet-is-open {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .search-slide-wrapper {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  }
+}
+
+.search-slide-wrapper .search-slide-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-block: 1.5rem;
+  padding-inline: 1rem;
+}
+
+.search-slide-wrapper .search-slide-inner > :not(.close-search) {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+}
+
+.search-slide-wrapper .w3-search-block-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-slide-wrapper .search-slide-inner::before,
+.search-slide-wrapper .search-slide-inner::after,
+.search-slide-wrapper .w3-search-block-form::before,
+.search-slide-wrapper .w3-search-block-form::after {
+  content: none;
+}
+
+.search-slide-wrapper .w3-search-block-form .form-item,
+.search-slide-wrapper .w3-search-block-form .w3css-form-item {
+  position: relative;
+  flex: 1 1 auto;
+  inline-size: auto;
+  min-inline-size: 0;
+  padding: 0;
+}
+
+.search-slide-wrapper .w3-search-block-form .form-actions {
+  flex: 0 0 auto;
+  inline-size: auto;
+  min-inline-size: 3rem;
+  padding: 0;
+}
+
+.search-slide-wrapper .w3-search-block-form .form-type-search::before {
+  inset-block-start: 50%;
+  inset-inline: 8px auto;
+  transform: translateY(-50%);
+}
+
+.search-slide-wrapper .close-search {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.open-search:focus-visible,
+.search-slide-wrapper .close-search:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+/* search-slide:end */
+
+/* The header stays at the top of the page (replaces the old scroll handler). */
+#w3css-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--amunet-header-z);
 }
 
 .w3-sticky {
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: var(--amunet-sticky-shadow);
 }
 
-#search-slide form#search-block-form {
-  width: calc(100% - 16px);
-  max-width: 100% !important;
-  padding: 9px 0 0 0 !important;
-  margin: 0 16px;
+/* Header: side-menu opener | centred branding | search opener. Equal outer columns keep the branding centred. */
+.w3css-header__inner {
+  display: grid;
+  grid-template-columns: var(--amunet-icon-size) 1fr var(--amunet-icon-size);
+  align-items: center;
 }
 
-#search-slide .w3-search-block-form .form-type-search:before {
-  top: 31px;
+.w3css-header__inner::before,
+.w3css-header__inner::after {
+  content: none;
 }
 
-#search-slide .search-slide-inner {
-  position: relative;
-  padding: 23px 61px 23px 0;
+.w3css-header__inner > :not(.w3css-main-nav__open, .open-search) {
+  grid-column: 2;
 }
 
-#search-slide form#search-block-form .form-item {
-  float: left;
-  width: 90%;
+.w3css-header__inner > .w3css-main-nav__open {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.w3css-header__inner > .open-search {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.w3css-header__inner > :is(.w3css-main-nav__open, .open-search) {
   margin: 0;
-  padding: 0;
-}
-
-#search-slide form#search-block-form .form-actions {
-  float: right;
-  width: 10%;
-  margin: 0;
-  padding: 0;
-}
-
-.close-search,
-.open-search,
-.open-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  min-inline-size: var(--amunet-icon-size);
+  min-block-size: var(--amunet-icon-size);
   cursor: pointer;
 }
 
-#search-slide .close-search {
-  position: absolute;
-  display: flex;
-  text-align: center;
-  top: 38px;
-  right: 16px;
-  padding: 10px 9px;
-  justify-content: center;
-  justify-items: center;
+.close-search {
+  cursor: pointer;
 }
 
-#header-inner #open-search {
-  float: right;
-}
-
-#header-inner #open-nav-inner {
-  float: left;
-}
-
-#header-inner #open-search,
-#header-inner #open-nav-inner {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  min-width: 50px;
-  min-height: 50px;
-}
-
-#main-navigation-v {
-  min-width: 300px;
-  z-index: 99;
-}
-
-/* Header */
 .block-system-branding-block {
-  margin: 0 auto;
-  float: none;
   text-align: center;
 }
 
-.site-slogan {
-  padding-left: 0;
+/* Side menu. The id is kept: it must match v-menu.css:1-6 (#w3css-main-nav-vertical) to override it. */
+#w3css-main-nav-vertical {
+  min-inline-size: var(--amunet-side-nav-size);
+  z-index: var(--amunet-side-nav-z);
 }
 
-@media (max-width:600px) {
-  #search-slide .search-slide-inner {
-    padding-top: 25px;
-    padding-bottom: 25px;
-  }
+/* Keyboard focus: the base theme removes every outline; this puts one back. */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.w3-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
 
-  #search-slide form#search-block-form .form-actions {
-    min-width: 50px;
-    width: 25%;
-  }
+/* Colour fixes (planning/subthemes-a11y-audit.md section 4, owner decisions 2026-11-02),
+   scoped to amunet's own scheme like the values above. */
 
-  #search-slide form#search-block-form .form-item {
-    width: 75%;
-  }
+/* Header text and links: navy on the cyan header (white was 3.05:1, navy is 4.85:1). */
+.w3css-scheme-w3-theme-00008 #w3css-header,
+.w3css-scheme-w3-theme-00008 #w3css-header a,
+.w3css-scheme-w3-theme-00008 #w3css-header p,
+.w3css-scheme-w3-theme-00008 #w3css-header :is(h1, h2, h3, h4, h5, h6) {
+  /* The ids match the scheme's own rules; !important beats w3-theme-00008.css:42-44 and :108-114,
+     and w3-css-theme-shared-custom.css:66-68 and :83-85, all !important at the same specificity.
+     a.w3-button:hover (w3-theme-00008.css:121-123) still wins on hover. */
+  color: var(--amunet-header-text) !important;
+}
 
-  #search-slide form#search-block-form {
-    padding-right: 70px;
-  }
+/* Footer menu plain text, was #1c2450 on #1e1e1e (1.13:1). */
+.w3css-scheme-w3-theme-00008 .w3css-menu__list--menu-footer {
+  color: var(--amunet-footer-text);
+}
 
-  #search-slide .close-search {
-    top: 40px;
-    padding: 8px 9px;
-  }
+/* Input focus border, was #d1d5ef (1.45:1). */
+.w3css-scheme-w3-theme-00008 input:focus,
+.w3css-scheme-w3-theme-00008 select:focus,
+.w3css-scheme-w3-theme-00008 textarea:focus {
+  /* Beats w3-theme-00008.css:85-89, an !important rule of the same specificity. */
+  border-color: var(--amunet-focus-border) !important;
+}
 
+/* Users who ask for less motion get none: the scheme sets a 0.4s transition on every link and button. */
+@media (prefers-reduced-motion: reduce) {
+  a,
+  .w3-button {
+    /* Beats w3-css-theme-shared-custom.css:13, an !important rule of the same specificity. */
+    transition: none !important;
+  }
 }
