@@ -1,8 +1,15 @@
 # Amunet
 
 Amunet is a sub-theme of W3CSS Theme (machine name `drupal8_w3css_theme`). Its
-menu is hidden until a visitor asks for it: a menu button sits at the left of the
-header and a search button at the right, with the site branding between them.
+menu is hidden until a visitor asks for it: a menu button sits at the left of
+the header and a search button at the right, with the site branding between
+them.
+
+- Project page:
+  [drupal.org/project/amunet](https://www.drupal.org/project/amunet)
+- Issue queue:
+  [drupal.org/project/issues/amunet](https://www.drupal.org/project/issues/amunet)
+
 
 ## Requirements
 
@@ -10,21 +17,23 @@ header and a search button at the right, with the site branding between them.
 - W3CSS Theme 3.0. Install it first. Amunet does not work without it, and it is
   the release that Amunet's class names and settings follow.
 
-## Installing
+
+## Installation
 
 1. Install W3CSS Theme 3.0 (for example `composer require drupal/d8w3css`).
-2. Install Amunet into `themes/contrib`, for example
+1. Install Amunet into `themes/contrib`, for example
    `composer require drupal/amunet`.
-3. Go to Appearance (`/admin/appearance`) and scroll to "Amunet".
-4. Click "Install and set as default".
+1. Go to Appearance (`/admin/appearance`) and scroll to "Amunet".
+1. Click "Install and set as default".
 
 With Drush: `drush theme:enable drupal8_w3css_theme amunet`, then
 `drush config:set system.theme default amunet -y`, then `drush cr`.
 
 Installing the theme also adds its default block placements (main menu, account
 menu, search, branding, footer menu and the page blocks). Check them at
-`/admin/structure/block` for the Amunet theme and move any that clash with blocks
-you already have.
+`/admin/structure/block` for the Amunet theme and move any that clash with
+blocks you already have.
+
 
 ## What is different from W3CSS Theme
 
@@ -61,7 +70,8 @@ the base theme.
 
 The regions are the base theme's 22, plus "Fixed Search Bar" (23 in total).
 
-## Settings
+
+## Configuration
 
 Amunet has no settings of its own. It uses the settings form of W3CSS Theme: go
 to `/admin/appearance/settings/amunet` to set the website width, color scheme
@@ -70,18 +80,20 @@ defaults are the color scheme above and the copyright text "Copyright %year% -
 All Rights Reserved". Social links are empty and turned off, and the credit link
 is off.
 
+
 ## Checking that it works
 
 1. Open the front page. The header shows a menu button at the left, the branding
    in the middle and a search button at the right. No menu is visible.
-2. Click the menu button. The menu opens as a panel at the side. Close it with
+1. Click the menu button. The menu opens as a panel at the side. Close it with
    its close button.
-3. Click the search button. The search panel slides down from the top and the
+1. Click the search button. The search panel slides down from the top and the
    cursor is in the search field. Press Escape. The panel closes.
-4. Scroll down. The header stays at the top.
-5. Make the window narrow, about 390 pixels wide. The header still shows the
+1. Scroll down. The header stays at the top.
+1. Make the window narrow, about 390 pixels wide. The header still shows the
    three parts and both buttons still open their panels.
-6. Press the Tab key. A visible outline moves with the focus.
+1. Press the Tab key. A visible outline moves with the focus.
+
 
 ## Custom CSS and JavaScript
 
@@ -96,10 +108,11 @@ Put your own CSS, JavaScript and templates in a sub-theme of Amunet. The folder
 `themes/custom`, and rename the folder, its files, the library name inside them
 and the name in the `.info.yml` file before you enable it.
 
+
 ## Helpful links
 
-- W3CSS Theme: https://www.drupal.org/project/d8w3css
-- Documentation: https://www.drupal.org/node/2866181
-- Color schemes: https://www.w3css.flashwebcenter.com/w3css-predefined-color-themes
-- Amunet demo: https://www.amunet.flashwebcenter.com/
-- Issue queue: https://www.drupal.org/project/issues/amunet
+- [W3CSS Theme project page](https://www.drupal.org/project/d8w3css)
+- [W3CSS Theme documentation](https://www.drupal.org/node/2866181)
+- [Predefined color themes](https://www.w3css.flashwebcenter.com/w3css-predefined-color-themes)
+- [Amunet demo site](https://www.amunet.flashwebcenter.com/)
+- [Amunet issue queue](https://www.drupal.org/project/issues/amunet)
