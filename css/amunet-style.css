@@ -1,7 +1,7 @@
 /*
  * amunet: centred branding header with the side-menu and search openers at
- * its edges, plus colour fixes, on top of the D8W3CSS base theme and its
- * colour scheme (w3-theme-00008 by default).
+ * its edges, plus color fixes, on top of the D8W3CSS base theme and its
+ * color scheme (w3-theme-00008 by default).
  * The theme's own values live in the --amunet-* custom properties below.
  */
 :root {
@@ -9,12 +9,12 @@
   --amunet-header-z: 97;
   --amunet-side-nav-size: 300px;
   --amunet-side-nav-z: 99;
-  --amunet-sticky-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+  --amunet-sticky-shadow: 0 2px 5px 0 rgb(0, 0, 0, 0.16), 0 2px 10px 0 rgb(0, 0, 0, 0.12);
 }
 
-/* Colour values: made for amunet's own scheme, so they apply only while that
+/* Color values: made for amunet's own scheme, so they apply only while that
    scheme is active. D8W3CSS names the active scheme in a body class; with any
-   other scheme, that scheme's own colours are left untouched. */
+   other scheme, that scheme's own colors are left untouched. */
 .w3css-scheme-w3-theme-00008 {
   --amunet-header-text: #1c2450;
   --amunet-footer-text: #bebebe;
@@ -32,24 +32,27 @@
  */
 .search-slide-wrapper {
   --amunet-search-z: 9999;
-  --amunet-search-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+  --amunet-search-shadow: 0 2px 5px 0 rgb(0, 0, 0, 0.16), 0 2px 10px 0 rgb(0, 0, 0, 0.12);
+
   position: fixed;
+  z-index: var(--amunet-search-z);
+  transform: translateY(-100%);
+  opacity: 0;
+  box-shadow: var(--amunet-search-shadow);
   inset-block-start: 0;
   inset-inline: 0;
-  z-index: var(--amunet-search-z);
-  box-shadow: var(--amunet-search-shadow);
-  opacity: 0;
-  transform: translateY(-100%);
 }
 
 .search-slide-wrapper.amunet-is-open {
-  opacity: 1;
   transform: none;
+  opacity: 1;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .search-slide-wrapper {
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transition:
+      transform 0.3s ease-out,
+      opacity 0.3s ease-out;
   }
 }
 
@@ -102,8 +105,8 @@
 }
 
 .search-slide-wrapper .close-search {
-  flex: 0 0 auto;
   display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: center;
 }
@@ -143,24 +146,24 @@
 }
 
 .w3css-header__inner > .w3css-main-nav__open {
-  grid-column: 1;
   grid-row: 1;
+  grid-column: 1;
 }
 
 .w3css-header__inner > .open-search {
-  grid-column: 3;
   grid-row: 1;
+  grid-column: 3;
 }
 
 .w3css-header__inner > :is(.w3css-main-nav__open, .open-search) {
-  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0;
   padding: 10px;
+  cursor: pointer;
   min-inline-size: var(--amunet-icon-size);
   min-block-size: var(--amunet-icon-size);
-  cursor: pointer;
 }
 
 .close-search {
@@ -177,7 +180,8 @@
   z-index: var(--amunet-side-nav-z);
 }
 
-/* Keyboard focus: the base theme removes every outline; this puts one back. */
+/* Keyboard focus: the same ring as the base theme (base.css), kept here so
+   the sub-theme does not depend on the base theme version. */
 a:focus-visible,
 button:focus-visible,
 summary:focus-visible,
@@ -189,7 +193,7 @@ textarea:focus-visible,
   outline-offset: 2px;
 }
 
-/* Colour fixes (planning/subthemes-a11y-audit.md section 4, owner decisions 2026-11-02),
+/* Color fixes (planning/subthemes-a11y-audit.md section 4, owner decisions 2026-11-02),
    scoped to amunet's own scheme like the values above. */
 
 /* Header text and links: navy on the cyan header (white was 3.05:1, navy is 4.85:1). */
