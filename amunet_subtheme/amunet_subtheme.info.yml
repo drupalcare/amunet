@@ -2,7 +2,7 @@ name: Amunet Sub-theme
 type: theme
 base theme: amunet
 core_version_requirement: ^11.3 || ^12
-description: 'amunet sub-theme is an empty theme for your customization.'
+description: 'Provides an empty starter sub-theme of Amunet for your own customizations.'
 libraries:
   - amunet_subtheme/amunet-subtheme-global
 

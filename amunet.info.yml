@@ -3,7 +3,7 @@ package: W3CSS
 type: theme
 base theme: drupal8_w3css_theme
 core_version_requirement: ^11.3 || ^12
-description: 'Provides a W3CSS Theme sub-theme with a compact header: a menu button opens the menus as a side panel, a search button opens a slide-down search panel, and the site branding sits between them. <a href="https://www.amunet.flashwebcenter.com">Demo site</a>'
+description: 'Provides a W3CSS Theme sub-theme with a compact header: a menu button opens the menus in a side panel, and a search button opens a search panel.'
 
 libraries:
   - amunet/amunet-theme-global
