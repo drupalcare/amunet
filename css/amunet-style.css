@@ -1,230 +1,377 @@
-/*
- * amunet: centred branding header with the side-menu and search openers at
- * its edges, plus color fixes, on top of the D8W3CSS base theme and its
- * color scheme (w3-theme-00008 by default).
- * The theme's own values live in the --amunet-* custom properties below.
+/**
+ * @file
+ * amunet: sticky top navigation, header and color fixes on top of the W3CSS
+ * Theme and its color scheme.
+ *
+ * Layers (order: the W3CSS Theme's w3css-layers.css; check: scripts/css-layers-check.py):
+ *   w3css.tokens    every color value of this file, as --amunet-* custom properties
+ *   w3css.base      the keyboard focus ring for links, buttons and fields
+ *   w3css.locked    the !important rules (accessibility, and the color fix that
+ *                   must beat the scheme's own !important rule)
+ *   w3css.subtheme  everything else
  */
-:root {
-  --amunet-icon-size: 50px;
-  --amunet-header-z: 97;
-  --amunet-side-nav-size: 300px;
-  --amunet-side-nav-z: 99;
-  --amunet-sticky-shadow: 0 2px 5px 0 rgb(0, 0, 0, 0.16), 0 2px 10px 0 rgb(0, 0, 0, 0.12);
-}
 
-/* Color values: made for amunet's own scheme, so they apply only while that
-   scheme is active. D8W3CSS names the active scheme in a body class; with any
-   other scheme, that scheme's own colors are left untouched. */
-.w3css-scheme-w3-theme-00008 {
-  --amunet-header-text: #1c2450;
-  --amunet-footer-text: #bebebe;
-  --amunet-footer-border: #e0486f;
-  --amunet-focus-border: #6a78cb;
+@layer w3css.tokens {
+  :root {
+    --amunet-sticky-shadow: 0 2px 5px 0 rgb(0, 0, 0, 0.16), 0 2px 10px 0 rgb(0, 0, 0, 0.12);
+    --amunet-search-button-text: #fff;
+  }
 
-  /* Scheme variable (w3-theme-00008.css :root) that amunet re-points. */
-  --w-fm-inner-f-v: 1px solid var(--amunet-footer-border);
-}
+  .w3css-scheme-w3-theme-00008 {
+    --amunet-header-text: #fff;
+    --amunet-footer-text: #bebebe;
+    --amunet-footer-border: #e0486f;
+    --amunet-focus-border: #6a78cb;
+  }
 
-/* search-slide:start
- * Shared by amun, amunet and anhur; keep the three identical
- * (planning/scripts/check-search-slide-drift.py in the lane root).
- * js/amunet-script.js sets amunet-is-open and inert on the panel.
- */
-.search-slide-wrapper {
-  --amunet-search-z: 9999;
-  --amunet-search-shadow: 0 2px 5px 0 rgb(0, 0, 0, 0.16), 0 2px 10px 0 rgb(0, 0, 0, 0.12);
-
-  position: fixed;
-  z-index: var(--amunet-search-z);
-  transform: translateY(-100%);
-  opacity: 0;
-  box-shadow: var(--amunet-search-shadow);
-  inset-block-start: 0;
-  inset-inline: 0;
-}
-
-.search-slide-wrapper.amunet-is-open {
-  transform: none;
-  opacity: 1;
-}
-
-@media (prefers-reduced-motion: no-preference) {
   .search-slide-wrapper {
-    transition:
-      transform 0.3s ease-out,
-      opacity 0.3s ease-out;
+    --amunet-search-shadow: 0 2px 5px 0 rgb(0, 0, 0, 0.16), 0 2px 10px 0 rgb(0, 0, 0, 0.12);
   }
 }
 
-.search-slide-wrapper .search-slide-inner {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding-block: 1.5rem;
-  padding-inline: 1rem;
+@layer w3css.subtheme {
+  :root {
+
+    --amunet-icon-size: 50px;
+    --amunet-header-z: 97;
+    --amunet-side-nav-size: 300px;
+    --amunet-side-nav-z: 99;
+
+  }
 }
 
-.search-slide-wrapper .search-slide-inner > :not(.close-search) {
-  flex: 1 1 auto;
-  min-inline-size: 0;
+@layer w3css.base {
+  /* Keyboard focus: the same ring as the base theme (base.css), kept here so
+     the sub-theme does not depend on the base theme version. */
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  .w3-button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
 }
 
-.search-slide-wrapper .w3-search-block-form {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+@layer w3css.locked {
+  /* Color fixes (planning/subthemes-a11y-audit.md section 4, owner decisions 2026-11-02),
+     scoped to amunet's own scheme like the values above. */
+  /* Header text and links: white on the scheme's darker cyan header #008192 (4.61:1; navy
+     is 3.21:1 there). On the old #00a1c2 header white was 3.05:1, so this was navy until 3.x. */
+  .w3css-scheme-w3-theme-00008 #w3css-header,
+  .w3css-scheme-w3-theme-00008 #w3css-header a,
+  .w3css-scheme-w3-theme-00008 #w3css-header p,
+  .w3css-scheme-w3-theme-00008 #w3css-header :is(h1, h2, h3, h4, h5, h6) {
+    /* The scheme's header colors (css/predefined/w3css-scheme-custom-paint.css, w3css.schemes,
+       tokens from w3css-indigo-lagoon.css) are no longer !important; this rule stays locked so
+       unlayered site and contrib CSS cannot undo the contrast fix. It also beats the scheme's
+       #w3css-header a.w3-button:hover, which W3CSS Theme 2.x let win on hover. */
+    color: var(--amunet-header-text) !important;
+  }
+
+  /* Input focus border, was #d1d5ef (1.45:1). */
+  .w3css-scheme-w3-theme-00008 input:focus,
+  .w3css-scheme-w3-theme-00008 select:focus,
+  .w3css-scheme-w3-theme-00008 textarea:focus {
+    /* The scheme sets #d1d5ef in w3css.base (w3css-scheme-custom-paint.css); locked, so
+       unlayered site and contrib CSS cannot undo it either. */
+    border-color: var(--amunet-focus-border) !important;
+  }
+
+  /* Users who ask for less motion get none: the scheme sets a transition on every link and button. */
+  @media (prefers-reduced-motion: reduce) {
+    :where(.w3css-page-wrapper, #w3css-main-nav-vertical, .search-slide-wrapper) a,
+    .w3-button {
+      /* Must be locked: it beats the scheme's a transition (w3css-scheme-custom-paint.css) and the
+         unlayered menu-toggle transition in css/base/w3css-host-overrides.css, which a normal
+         rule in any layer would lose to. */
+      transition: none !important;
+    }
+  }
 }
 
-.search-slide-wrapper .search-slide-inner::before,
-.search-slide-wrapper .search-slide-inner::after,
-.search-slide-wrapper .w3-search-block-form::before,
-.search-slide-wrapper .w3-search-block-form::after {
-  content: none;
-}
+@layer w3css.subtheme {
+  /* Color values: made for amunet's own scheme, so they apply only while that
+     scheme is active. D8W3CSS names the active scheme in a body class; with any
+     other scheme, that scheme's own colors are left untouched. */
+  .w3css-scheme-w3-theme-00008 {
 
-.search-slide-wrapper .w3-search-block-form .form-item,
-.search-slide-wrapper .w3-search-block-form .w3css-form-item {
-  position: relative;
-  flex: 1 1 auto;
-  inline-size: auto;
-  min-inline-size: 0;
-  padding: 0;
-}
+    /* Scheme token (css/predefined/w3css-indigo-lagoon.css; read by
+       #w3css-footer-menu-inner form.w3-content in w3css-scheme-custom-paint.css)
+       that amunet re-points. W3CSS Theme 2.x named it --w-fm-inner-f-v. */
+    --w3css-custom-footer-menu-form-border: 1px solid var(--amunet-footer-border);
+  }
 
-.search-slide-wrapper .w3-search-block-form .form-actions {
-  flex: 0 0 auto;
-  inline-size: auto;
-  min-inline-size: 3rem;
-  padding: 0;
-}
+  /* search-slide:start
+   * Shared by amun, amunet and anhur; keep the three identical
+   * (planning/scripts/check-search-slide-drift.py in the lane root).
+   * js/amunet-script.js sets amunet-is-open and inert on the panel.
+   */
+  .search-slide-wrapper {
+    --amunet-search-z: 9999;
 
-.search-slide-wrapper .w3-search-block-form .form-type-search::before {
-  inset-block-start: 50%;
-  inset-inline: 8px auto;
-  transform: translateY(-50%);
-}
+    position: fixed;
+    z-index: var(--amunet-search-z);
+    transform: translateY(-100%);
+    opacity: 0;
+    box-shadow: var(--amunet-search-shadow);
+    inset-block-start: 0;
+    inset-inline: 0;
+  }
 
-.search-slide-wrapper .close-search {
-  display: inline-flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-}
+  .search-slide-wrapper.amunet-is-open {
+    transform: none;
+    opacity: 1;
+  }
 
-.open-search:focus-visible,
-.search-slide-wrapper .close-search:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
-}
-/* search-slide:end */
+  @media (prefers-reduced-motion: no-preference) {
+    .search-slide-wrapper {
+      transition:
+        transform 0.3s ease-out,
+        opacity 0.3s ease-out;
+    }
+  }
 
-/* The header stays at the top of the page (replaces the old scroll handler). */
-#w3css-header {
-  position: sticky;
-  inset-block-start: 0;
-  z-index: var(--amunet-header-z);
-}
+  .search-slide-wrapper .search-slide-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-block: 1.5rem;
+    padding-inline: 1rem;
+  }
 
-.w3-sticky {
-  box-shadow: var(--amunet-sticky-shadow);
-}
+  .search-slide-wrapper .search-slide-inner > :not(.close-search) {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+  }
 
-/* Header: side-menu opener | centred branding | search opener. Equal outer columns keep the branding centred. */
-.w3css-header__inner {
-  display: grid;
-  grid-template-columns: var(--amunet-icon-size) 1fr var(--amunet-icon-size);
-  align-items: center;
-}
+  .search-slide-wrapper .w3-search-block-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 
-.w3css-header__inner::before,
-.w3css-header__inner::after {
-  content: none;
-}
+  .search-slide-wrapper .search-slide-inner::before,
+  .search-slide-wrapper .search-slide-inner::after,
+  .search-slide-wrapper .w3-search-block-form::before,
+  .search-slide-wrapper .w3-search-block-form::after {
+    content: none;
+  }
 
-.w3css-header__inner > :not(.w3css-main-nav__open, .open-search) {
-  grid-column: 2;
-}
+  .search-slide-wrapper .w3-search-block-form .form-item,
+  .search-slide-wrapper .w3-search-block-form .w3css-form-item {
+    position: relative;
+    flex: 1 1 auto;
+    inline-size: auto;
+    min-inline-size: 0;
+    padding: 0;
+  }
 
-.w3css-header__inner > .w3css-main-nav__open {
-  grid-row: 1;
-  grid-column: 1;
-}
+  .search-slide-wrapper .w3-search-block-form .form-actions {
+    flex: 0 0 auto;
+    inline-size: auto;
+    min-inline-size: 3rem;
+    padding: 0;
+  }
 
-.w3css-header__inner > .open-search {
-  grid-row: 1;
-  grid-column: 3;
-}
+  .search-slide-wrapper .w3-search-block-form .form-type-search::before {
+    inset-block-start: 50%;
+    inset-inline: 8px auto;
+    transform: translateY(-50%);
+  }
 
-.w3css-header__inner > :is(.w3css-main-nav__open, .open-search) {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 10px;
-  cursor: pointer;
-  min-inline-size: var(--amunet-icon-size);
-  min-block-size: var(--amunet-icon-size);
-}
+  .search-slide-wrapper .close-search {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+  }
 
-.close-search {
-  cursor: pointer;
-}
+  .open-search:focus-visible,
+  .search-slide-wrapper .close-search:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
 
-.block-system-branding-block {
-  text-align: center;
-}
+  /* Polish: the form is one centred row (input, search button, close) no wider
+     than a reading line, a tall input with a visible border, and a filled
+     search button in the panel's own text colour. */
+  .search-slide-wrapper .search-slide-inner {
+    max-inline-size: 64rem;
+    margin: 0 auto;
+  }
 
-/* Side menu. The id is kept: it must match v-menu.css:1-6 (#w3css-main-nav-vertical) to override it. */
-#w3css-main-nav-vertical {
-  min-inline-size: var(--amunet-side-nav-size);
-  z-index: var(--amunet-side-nav-z);
-}
+  .search-slide-wrapper .w3-search-block-form input[type="search"] {
+    box-sizing: border-box;
+    block-size: 3rem;
+    margin: 0;
+    padding: 0 1rem;
+    border: 1px solid color-mix(in srgb, currentcolor 35%, transparent);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+  }
 
-/* Keyboard focus: the same ring as the base theme (base.css), kept here so
-   the sub-theme does not depend on the base theme version. */
-a:focus-visible,
-button:focus-visible,
-summary:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible,
-.w3-button:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
-}
+  .search-slide-wrapper .w3-search-block-form .form-actions {
+    border-radius: 0.25rem;
+    background-color: currentcolor;
+  }
 
-/* Color fixes (planning/subthemes-a11y-audit.md section 4, owner decisions 2026-11-02),
-   scoped to amunet's own scheme like the values above. */
+  .search-slide-wrapper .w3-search-block-form .form-actions :is(input, button) {
+    box-sizing: border-box;
+    block-size: 3rem;
+    margin: 0;
+    padding: 0 1.25rem;
+    border: 0;
+    border-radius: 0.25rem;
+    color: var(--amunet-search-button-text);
+    background-color: transparent;
+    font-weight: 600;
+  }
 
-/* Header text and links: navy on the cyan header (white was 3.05:1, navy is 4.85:1). */
-.w3css-scheme-w3-theme-00008 #w3css-header,
-.w3css-scheme-w3-theme-00008 #w3css-header a,
-.w3css-scheme-w3-theme-00008 #w3css-header p,
-.w3css-scheme-w3-theme-00008 #w3css-header :is(h1, h2, h3, h4, h5, h6) {
-  /* The ids match the scheme's own rules; !important beats w3-theme-00008.css:42-44 and :108-114,
-     and w3-css-theme-shared-custom.css:66-68 and :83-85, all !important at the same specificity.
-     a.w3-button:hover (w3-theme-00008.css:121-123) still wins on hover. */
-  color: var(--amunet-header-text) !important;
-}
+  .search-slide-wrapper .close-search {
+    inline-size: 3rem;
+    block-size: 3rem;
+    padding: 0;
+  }
+  /* search-slide:end */
+  /* The header stays at the top of the page (replaces the old scroll handler). */
+  #w3css-header {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--amunet-header-z);
+  }
 
-/* Footer menu plain text, was #1c2450 on #1e1e1e (1.13:1). */
-.w3css-scheme-w3-theme-00008 .w3css-menu__list--menu-footer {
-  color: var(--amunet-footer-text);
-}
+  .w3-sticky {
+    box-shadow: var(--amunet-sticky-shadow);
+  }
 
-/* Input focus border, was #d1d5ef (1.45:1). */
-.w3css-scheme-w3-theme-00008 input:focus,
-.w3css-scheme-w3-theme-00008 select:focus,
-.w3css-scheme-w3-theme-00008 textarea:focus {
-  /* Beats w3-theme-00008.css:85-89, an !important rule of the same specificity. */
-  border-color: var(--amunet-focus-border) !important;
-}
+  /* Header: side-menu opener | centred branding | search opener. Equal outer columns keep the branding centred. */
+  .w3css-header__inner {
+    display: grid;
+    grid-template-columns: var(--amunet-icon-size) 1fr var(--amunet-icon-size);
+    align-items: center;
+  }
 
-/* Users who ask for less motion get none: the scheme sets a 0.4s transition on every link and button. */
-@media (prefers-reduced-motion: reduce) {
-  a,
-  .w3-button {
-    /* Beats w3-css-theme-shared-custom.css:13, an !important rule of the same specificity. */
-    transition: none !important;
+  .w3css-header__inner::before,
+  .w3css-header__inner::after {
+    content: none;
+  }
+
+  .w3css-header__inner > :not(.w3css-main-nav__open, .open-search) {
+    grid-column: 2;
+  }
+
+  .w3css-header__inner > .w3css-main-nav__open {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .w3css-header__inner > .open-search {
+    grid-row: 1;
+    grid-column: 3;
+  }
+
+  .w3css-header__inner > :is(.w3css-main-nav__open, .open-search) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 10px;
+    cursor: pointer;
+    min-inline-size: var(--amunet-icon-size);
+    min-block-size: var(--amunet-icon-size);
+  }
+
+  .close-search {
+    cursor: pointer;
+  }
+
+  .block-system-branding-block {
+    text-align: center;
+  }
+
+  /* Branding lockup: logo and site name sit side by side as one group,
+     centred on one line, the logo sized to the name instead of its
+     300px source width. */
+  #w3css-header .block-system-branding-block {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0 1rem;
+    margin: 0;
+    padding: 0.5rem 0;
+  }
+
+  #w3css-header .block-system-branding-block .site-logo {
+    float: none;
+    flex: 0 0 auto;
+    inline-size: auto;
+    max-inline-size: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #w3css-header .block-system-branding-block .site-logo img {
+    inline-size: auto;
+    max-inline-size: none;
+    block-size: 2.75rem;
+  }
+
+  #w3css-header .block-system-branding-block .w3css-site-name-slogan {
+    flex: 0 1 auto;
+    min-inline-size: 0;
+    margin: 0;
+    text-align: start;
+  }
+
+  #w3css-header .block-system-branding-block .w3css-site-name {
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  #w3css-header .block-system-branding-block .w3css-site-slogan {
+    margin: 0.125rem 0 0 0;
+    line-height: 1.3;
+  }
+
+  @media screen and (max-width: 37.49875rem) {
+    #w3css-header .block-system-branding-block {
+      gap: 0 0.625rem;
+    }
+
+    #w3css-header .block-system-branding-block .site-logo img {
+      block-size: 2.25rem;
+    }
+
+    #w3css-header .block-system-branding-block .w3css-site-slogan {
+      white-space: nowrap;
+    }
+  }
+
+  /* Side menu. The id is kept: it must match v-menu.css:1-6 (#w3css-main-nav-vertical) to override it. */
+  #w3css-main-nav-vertical {
+    min-inline-size: var(--amunet-side-nav-size);
+    z-index: var(--amunet-side-nav-z);
+  }
+
+  /* Footer menu plain text, was #1c2450 on #1e1e1e (1.13:1). */
+  .w3css-scheme-w3-theme-00008 .w3css-menu__list--menu-footer {
+    color: var(--amunet-footer-text);
+  }
+
+  /* Polish: the header openers (menu and search buttons) change colour only, in 200 ms; no size or position change. */
+  .w3css-header__inner > :is(.w3css-main-nav__open, .open-search) {
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .w3css-header__inner > :is(.w3css-main-nav__open, .open-search) {
+      transition: none;
+    }
   }
 }

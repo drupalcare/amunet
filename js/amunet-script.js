@@ -119,4 +119,18 @@
       });
     },
   };
+
+  // Deprecated in 3.0, removed in the next major: the 2.x behavior
+  // name amunetThemeBehavior reads and writes
+  // Drupal.behaviors.amunetSearchSlide. It is not enumerable, so
+  // Drupal.attachBehaviors() runs the behavior once.
+  if (!Object.hasOwn(Drupal.behaviors, 'amunetThemeBehavior')) {
+    Object.defineProperty(Drupal.behaviors, 'amunetThemeBehavior', {
+      configurable: true,
+      get: () => Drupal.behaviors.amunetSearchSlide,
+      set: (value) => {
+        Drupal.behaviors.amunetSearchSlide = value;
+      },
+    });
+  }
 })(Drupal, once);

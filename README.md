@@ -59,7 +59,7 @@ the base theme.
 - **Footer order.** On the front page, the three footer regions show first. On
   every page, the bottom regions, the footer menu and the copyright follow, in
   one footer.
-- **Colors.** The default color scheme is `w3-theme-00008` (Red Turquoise).
+- **Colors.** The default color scheme is `w3-theme-00008` (Indigo Lagoon).
   Amunet adds a few contrast fixes for this scheme: navy text in the header, a
   lighter footer menu text and a darker input focus border. They apply only
   while this scheme is selected. If you pick another scheme, you get that
@@ -94,6 +94,10 @@ is off.
    three parts and both buttons still open their panels.
 1. Press the Tab key. A visible outline moves with the focus.
 
+
+## CSS layers and upgrading to W3CSS Theme 3.x
+
+The theme's stylesheet is written inside CSS layers. The layer order is owned by the W3CSS Theme (css/base/w3css-layers.css, loaded first on every page); this theme keeps no copy of it. Its rules sit in `w3css.subtheme`, which beats the W3CSS Theme's own layers whatever the selector specificity. Color values are custom properties in `w3css.tokens`, the keyboard focus ring is in `w3css.base`, and the few `!important` rules live in `w3css.locked`. Check the file with `python3 scripts/css-layers-check.py` (manifest: css-layers.json; the script is the W3CSS Theme's own copy). The library no longer depends on the deprecated `drupal8_w3css_theme/d8w3css-global-styling` alias: it uses `drupal8_w3css_theme/base-layers`. A site that overrides or extends this theme's library keeps the same library id.
 
 ## Custom CSS and JavaScript
 
