@@ -31,12 +31,10 @@
 
 @layer w3css.subtheme {
   :root {
-
     --amunet-icon-size: 50px;
     --amunet-header-z: 97;
     --amunet-side-nav-size: 300px;
     --amunet-side-nav-z: 99;
-
   }
 }
 
@@ -97,7 +95,6 @@
      scheme is active. D8W3CSS names the active scheme in a body class; with any
      other scheme, that scheme's own colors are left untouched. */
   .w3css-scheme-w3-theme-00008 {
-
     /* Scheme token (css/predefined/w3css-indigo-lagoon.css; read by
        #w3css-footer-menu-inner form.w3-content in w3css-scheme-custom-paint.css)
        that amunet re-points. W3CSS Theme 2.x named it --w-fm-inner-f-v. */
@@ -208,26 +205,26 @@
     block-size: 3rem;
     margin: 0;
     padding: 0 1rem;
-    border: 1px solid color-mix(in srgb, currentcolor 35%, transparent);
+    border: 1px solid color-mix(in sRGB, currentColor 35%, transparent);
     border-radius: 0.25rem;
     font-size: 1rem;
   }
 
   .search-slide-wrapper .w3-search-block-form .form-actions {
     border-radius: 0.25rem;
-    background-color: currentcolor;
+    background-color: currentColor;
   }
 
   .search-slide-wrapper .w3-search-block-form .form-actions :is(input, button) {
     box-sizing: border-box;
-    block-size: 3rem;
     margin: 0;
     padding: 0 1.25rem;
+    color: var(--amunet-search-button-text);
     border: 0;
     border-radius: 0.25rem;
-    color: var(--amunet-search-button-text);
     background-color: transparent;
     font-weight: 600;
+    block-size: 3rem;
   }
 
   .search-slide-wrapper .close-search {
