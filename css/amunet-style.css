@@ -131,6 +131,7 @@
     }
   }
 
+  /* stylelint-disable-next-line order/order -- this nested rule stays after the @media block; moving it changes which rule wins */
   .search-slide-wrapper .search-slide-inner {
     display: flex;
     align-items: center;
@@ -349,6 +350,7 @@
   }
 
   /* Side menu. The id is kept: it must match v-menu.css:1-6 (#w3css-main-nav-vertical) to override it. */
+  /* stylelint-disable-next-line order/order -- this nested rule stays after the @media block; moving it changes which rule wins */
   #w3css-main-nav-vertical {
     min-inline-size: var(--amunet-side-nav-size);
     z-index: var(--amunet-side-nav-z);
