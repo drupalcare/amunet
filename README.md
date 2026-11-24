@@ -22,7 +22,7 @@ them.
 
 1. Install W3CSS Theme 3.0 (for example `composer require drupal/d8w3css`).
 1. Install Amunet into `themes/contrib`, for example
-   `composer require drupal/amunet`.
+   `composer require drupal/amunet-amunet`.
 1. Go to Appearance (`/admin/appearance`) and scroll to "Amunet".
 1. Click "Install and set as default".
 
